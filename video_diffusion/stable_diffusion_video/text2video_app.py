@@ -26,16 +26,21 @@ class StableDiffusionText2VideoGenerator:
     def generate_video(
         self,
         model_path: str,
-        prompts: str,
+        first_prompts: str,
+        second_prompts: str,
         negative_prompt: str,
         num_interpolation_steps: int,
         guidance_scale: int,
         num_inference_step: int,
         height: int,
         width: int,
-        seeds: list,
+        first_seeds: int,
+        second_seeds: int,
     ):
+        seeds = [first_seeds, second_seeds]
+        prompts = [int(first_prompts), int(second_prompts)]
         pipe = self.load_model(model_path=model_path)
+
         output_video = pipe.walk(
             prompts=prompts,
             num_interpolation_steps=num_interpolation_steps,
@@ -53,9 +58,14 @@ class StableDiffusionText2VideoGenerator:
         with gr.Blocks():
             with gr.Row():
                 with gr.Column():
-                    text2video_prompt = gr.Textbox(
+                    text2video_first_prompt = gr.Textbox(
                         lines=1,
-                        placeholder="Enter text prompt here",
+                        placeholder="Enter text first prompt here",
+                        show_label=False,
+                    )
+                    text2video_second_prompt = gr.Textbox(
+                        lines=1,
+                        placeholder="Enter text second prompt here",
                         show_label=False,
                     )
                     text2video_negative_prompt = gr.Textbox(
@@ -111,10 +121,13 @@ class StableDiffusionText2VideoGenerator:
                                     label="Width",
                                 )
 
-                                text2video_seeds = gr.Textbox(
-                                    lines=1,
-                                    placeholder="Enter seeds here",
-                                    show_label=False,
+                                text2video_first_seeds = gr.Number(
+                                    value=0,
+                                    label="Seed",
+                                )
+                                text2video_second_seeds = gr.Number(
+                                    value=0,
+                                    label="Seed",
                                 )
                     text2video_generate = gr.Button(value="Generator")
             
@@ -125,13 +138,16 @@ class StableDiffusionText2VideoGenerator:
                 fn=StableDiffusionText2VideoGenerator().generate_video,
                 inputs=[
                     text2video_model_path,
-                    text2video_prompt,
+                    text2video_first_prompt,
+                    text2video_second_prompt,
                     text2video_negative_prompt,
                     text2video_num_interpolation_steps,
                     text2video_guidance_scale,
                     text2video_num_inference_steps,
                     text2video_height,
                     text2video_width,
-                    text2video_seeds,
-                ]
+                    text2video_first_seeds,
+                    text2video_second_seeds,
+                ],
+                outputs=text2video_output
             )
