@@ -34,13 +34,14 @@ class StableDiffusionText2VideoGenerator:
         num_inference_step: int,
         height: int,
         width: int,
-        first_seeds: int,
-        second_seeds: int,
+        seeds: int,
+        upsample: bool,
     ):
-        seeds = [first_seeds, second_seeds]
-        prompts = [int(first_prompts), int(second_prompts)]
+        #seeds = [int(first_seeds), int(second_seeds)]
+        prompts = [first_prompts, second_prompts]
         pipe = self.load_model(model_path=model_path)
-
+        seeds = seeds.replace("[", "").replace("]", "").split(",")
+        
         output_video = pipe.walk(
             prompts=prompts,
             num_interpolation_steps=num_interpolation_steps,
@@ -50,6 +51,7 @@ class StableDiffusionText2VideoGenerator:
             num_inference_steps=num_inference_step,
             negative_prompt=negative_prompt,
             seeds=seeds,
+            upsample=upsample,
         )
 
         return output_video
@@ -60,35 +62,32 @@ class StableDiffusionText2VideoGenerator:
                 with gr.Column():
                     text2video_first_prompt = gr.Textbox(
                         lines=1,
-                        placeholder="Enter text first prompt here",
+                        placeholder="First Prompt",
                         show_label=False,
                     )
                     text2video_second_prompt = gr.Textbox(
                         lines=1,
-                        placeholder="Enter text second prompt here",
+                        placeholder="Second Prompt",
                         show_label=False,
                     )
                     text2video_negative_prompt = gr.Textbox(
                         lines=1,
-                        placeholder="Enter negative text prompt here",
+                        placeholder="Negative Prompt ",
                         show_label=False,
                     )
-                
                     with gr.Row():
                         with gr.Column():
                             text2video_model_path = gr.Dropdown(
                                 choices=stable_model_list,
-                                label="Model",
+                                label="Stable Model List",
                                 value=stable_model_list[0],
                             )
-                                
-
                             text2video_guidance_scale = gr.Slider(
                                 minimum=0,
-                                maximum=100,
+                                maximum=15,
                                 step=1,
                                 value=8.5,
-                                label="Guidance scale",
+                                label="Guidance Scale",
                             )
                             text2video_num_inference_steps = gr.Slider(
                                 minimum=1,
@@ -97,13 +96,16 @@ class StableDiffusionText2VideoGenerator:
                                 value=50,
                                 label="Number of Inference Steps",
                             )
+                            text2video_seeds = gr.Textbox(
+                                lines=1,
+                                placeholder="Seeds: [42, 224]",
+                                show_label=False,
+                            )
                         with gr.Row():
                             with gr.Column():
-                                text2video_num_interpolation_steps = gr.Slider(
-                                    minimum=1,
-                                    maximum=100,
-                                    step=3,
-                                    value=10,
+
+                                text2video_num_interpolation_steps = gr.Number(
+                                    value=3,
                                     label="Number of Interpolation Steps",
                                 )
                                 text2video_height = gr.Slider(
@@ -120,19 +122,16 @@ class StableDiffusionText2VideoGenerator:
                                     value=512,
                                     label="Width",
                                 )
+                                text2video_upsample = gr.Checkbox(
+                                    label="Upsample",
+                                    default=False,
+                                )
 
-                                text2video_first_seeds = gr.Number(
-                                    value=0,
-                                    label="Seed",
-                                )
-                                text2video_second_seeds = gr.Number(
-                                    value=0,
-                                    label="Seed",
-                                )
+
                     text2video_generate = gr.Button(value="Generator")
             
                 with gr.Column():
-                    text2video_output = gr.Video(value=None, label="Output video").style(grid=(1, 2), height=200)
+                    text2video_output = gr.Video(value=None, label="Output video")
 
             text2video_generate.click(
                 fn=StableDiffusionText2VideoGenerator().generate_video,
@@ -146,8 +145,8 @@ class StableDiffusionText2VideoGenerator:
                     text2video_num_inference_steps,
                     text2video_height,
                     text2video_width,
-                    text2video_first_seeds,
-                    text2video_second_seeds,
+                    text2video_seeds,
+                    text2video_upsample,
                 ],
                 outputs=text2video_output
             )

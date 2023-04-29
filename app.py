@@ -8,8 +8,7 @@ def diffusion_app():
         with gr.Row():
             with gr.Column():
                 with gr.Tab("Text2Video"):
-                    StableDiffusionText2VideoGenerator.app()
-                
+                    StableDiffusionText2VideoGenerator.app() 
                 
     app.queue(concurrency_count=1)
     app.launch(debug=True, enable_queue=True)
