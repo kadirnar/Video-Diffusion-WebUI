@@ -1,4 +1,6 @@
-diffusers==0.11.1
-gradio==3.28.0
+diffusers
+gradio==3.19.0
 stable_diffusion_videos==0.8.1
 torch==2.0.0
+yt-dlp
+animesr
