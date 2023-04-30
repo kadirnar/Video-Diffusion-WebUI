@@ -1,9 +1,9 @@
 <div align="center">
-<h2>
+<h3>
     Video Diffusion WebUI: Text2Video + Image2Video + Video2Video WebUI
-</h2>
+</h3>
 <div>
-    <a href="https://huggingface.co/spaces/ArtGAN/Video-Diffusion-WebUI"><img src="https://img.shields.io/badge/%20HuggingFace%20-Demo-blue.svg" alt="HuggingFace Spaces"></a>
+    <a href="https://huggingface.co/spaces/ArtGAN/Video-Diffusion-WebUI"><img src="https://huggingface.co/datasets/huggingface/badges/raw/main/open-in-hf-spaces-sm.svg" alt="HuggingFace Spaces"></a>
 
 </div>
 </div>
