@@ -1,7 +1,9 @@
+import gradio as gr
 import torch
 from stable_diffusion_videos import StableDiffusionWalkPipeline
+
 from video_diffusion.utils.model_list import stable_model_list
-import gradio as gr
+
 
 class StableDiffusionText2VideoGenerator:
     def __init__(self):
@@ -37,25 +39,25 @@ class StableDiffusionText2VideoGenerator:
         seeds: int,
         upsample: bool,
     ):
-        #seeds = [int(first_seeds), int(second_seeds)]
         prompts = [first_prompts, second_prompts]
+        list_seed = seeds[1:-1].split(",")
+        list_seed = [int(i) for i in list_seed]
         pipe = self.load_model(model_path=model_path)
-        seeds = seeds.replace("[", "").replace("]", "").split(",")
-        
+
         output_video = pipe.walk(
             prompts=prompts,
-            num_interpolation_steps=num_interpolation_steps,
+            num_interpolation_steps=int(num_interpolation_steps),
             height=height,
             width=width,
             guidance_scale=guidance_scale,
             num_inference_steps=num_inference_step,
             negative_prompt=negative_prompt,
-            seeds=seeds,
+            seeds=list_seed,
             upsample=upsample,
         )
 
         return output_video
-    
+
     def app():
         with gr.Blocks():
             with gr.Row():
@@ -103,7 +105,6 @@ class StableDiffusionText2VideoGenerator:
                             )
                         with gr.Row():
                             with gr.Column():
-
                                 text2video_num_interpolation_steps = gr.Number(
                                     value=3,
                                     label="Number of Interpolation Steps",
@@ -127,9 +128,8 @@ class StableDiffusionText2VideoGenerator:
                                     default=False,
                                 )
 
-
                     text2video_generate = gr.Button(value="Generator")
-            
+
                 with gr.Column():
                     text2video_output = gr.Video(value=None, label="Output video")
 
@@ -148,5 +148,5 @@ class StableDiffusionText2VideoGenerator:
                     text2video_seeds,
                     text2video_upsample,
                 ],
-                outputs=text2video_output
+                outputs=text2video_output,
             )
