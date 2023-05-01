@@ -9,9 +9,7 @@ from einops import rearrange
 from tqdm import tqdm
 
 
-def save_videos_grid(
-    videos: torch.Tensor, save_path: str = "output", path: str = "output.gif", rescale=False, n_rows=4, fps=3
-):
+def save_videos_grid(videos: torch.Tensor, path: str, rescale=False, n_rows=4, fps=8):
     videos = rearrange(videos, "b c t h w -> t b c h w")
     outputs = []
     for x in videos:
@@ -22,11 +20,7 @@ def save_videos_grid(
         x = (x * 255).numpy().astype(np.uint8)
         outputs.append(x)
 
-    if not os.path.exists(save_path):
-        os.makedirs(save_path)
-
-    imageio.mimsave(os.path.join(save_path, path), outputs, fps=fps)
-    return os.path.join(save_path, path)
+    imageio.mimsave(path, outputs, fps=fps)
 
 
 # DDIM Inversion
