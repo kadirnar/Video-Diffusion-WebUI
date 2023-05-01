@@ -1,7 +1,7 @@
 import gradio as gr
+import numpy as np
 import torch
 from stable_diffusion_videos import StableDiffusionWalkPipeline
-import numpy as np
 
 from video_diffusion.utils.model_list import stable_model_list
 
@@ -40,8 +40,8 @@ class StableDiffusionText2VideoGenerator:
         upsample: bool,
         fps=int,
     ):
-        first_seed =  np.random.randint(0,100000)
-        second_seed= np.random.randint(0,100000)
+        first_seed = np.random.randint(0, 100000)
+        second_seed = np.random.randint(0, 100000)
         seeds = [first_seed, second_seed]
         prompts = [first_prompts, second_prompts]
         pipe = self.load_model(model_path=model_path)
@@ -56,7 +56,7 @@ class StableDiffusionText2VideoGenerator:
             negative_prompt=negative_prompt,
             seeds=seeds,
             upsample=upsample,
-            fps=fps
+            fps=fps,
         )
 
         return output_video
@@ -151,7 +151,7 @@ class StableDiffusionText2VideoGenerator:
                     stable_text2video_height,
                     stable_text2video_width,
                     stable_text2video_upsample,
-                    stable_text2video_fps
+                    stable_text2video_fps,
                 ],
                 outputs=text2video_output,
             )

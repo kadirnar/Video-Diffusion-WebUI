@@ -57,7 +57,7 @@ class TunaVideoText2VideoGenerator:
             guidance_scale=guidance_scale,
         ).videos
 
-        output_path = save_videos_grid(videos=video, save_path='output', path=f"{prompt}.gif")
+        output_path = save_videos_grid(videos=video, save_path="output", path=f"{prompt}.gif")
         return output_path
 
     def app():
