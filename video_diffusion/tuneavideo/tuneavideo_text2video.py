@@ -57,8 +57,8 @@ class TunaVideoText2VideoGenerator:
             guidance_scale=guidance_scale,
         ).videos
 
-        output_path = save_videos_grid(videos=video, save_path="output", path=f"{prompt}.gif")
-        return output_path
+        save_videos_grid(videos=video, path="output.gif", fps=fps)
+        return "output.gif"
 
     def app():
         with gr.Blocks():
@@ -100,7 +100,7 @@ class TunaVideoText2VideoGenerator:
                                 minimum=1,
                                 maximum=60,
                                 step=1,
-                                value=30,
+                                value=5,
                                 label="Fps",
                             )
                         with gr.Row():
