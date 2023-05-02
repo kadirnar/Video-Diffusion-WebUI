@@ -2,3 +2,9 @@ torch==2.0.0
 git+https://github.com/huggingface/diffusers 
 transformers 
 accelerate
+opencv-python
+realesrgan==0.2.5.0
+librosa
+xformers
+einops
+imageio==2.25.1

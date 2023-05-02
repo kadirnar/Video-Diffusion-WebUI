@@ -136,7 +136,7 @@ class StableDiffusionText2VideoGenerator:
                     text2video_generate = gr.Button(value="Generator")
 
                 with gr.Column():
-                    text2video_output = gr.Video(label="Output video")
+                    text2video_output = gr.Video(label="Output")
 
             text2video_generate.click(
                 fn=StableDiffusionText2VideoGenerator().generate_video,

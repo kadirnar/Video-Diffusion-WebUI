@@ -123,7 +123,7 @@ class StableDiffusionZoomOut:
                     text2image_out_predict = gr.Button(value="Generator")
 
                 with gr.Column():
-                    output_image = gr.Video(label="Output Video")
+                    output_image = gr.Video(label="Output")
 
             text2image_out_predict.click(
                 fn=StableDiffusionZoomOut().generate_video,

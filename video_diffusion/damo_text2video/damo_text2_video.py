@@ -27,11 +27,12 @@ class DamoText2VideoGenerator:
         height: int,
         width: int,
     ):
+        
         pipe = self.load_model()
         video = pipe(
             prompt,
             negative_prompt=negative_prompt,
-            num_frames=num_frames,
+            num_frames=int(num_frames),
             height=height,
             width=width,
             num_inference_steps=num_inference_steps,
@@ -49,26 +50,41 @@ class DamoText2VideoGenerator:
                     dano_text2video_negative_prompt = gr.Textbox(lines=1, placeholder="Negative Prompt")
                     with gr.Row():
                         with gr.Column():
-                            dano_text2video_num_inference_steps = gr.Number(value=50, label="Number of Inference Steps")
-                            dano_text2video_guidance_scale = gr.Number(value=7.5, label="Guidance Scale")
+                            dano_text2video_num_inference_steps = gr.Slider(
+                                minimum=1,
+                                maximum=100,
+                                value=50,
+                                step=1,
+                                label="Inference Steps",
+                            )
+                            dano_text2video_guidance_scale = gr.Slider(
+                                minimum=1,
+                                maximum=15,
+                                value=7,
+                                step=1,
+                                label="Guidance Scale",
+                            )
                         with gr.Row():
                             with gr.Column():
                                 dano_text2video_height = gr.Slider(
                                     minimum=1,
                                     maximum=1280,
                                     value=512,
+                                    step=32,
                                     label="Height",
                                 )
                                 dano_text2video_width = gr.Slider(
                                     minimum=1,
                                     maximum=1280,
                                     value=512,
+                                    step=32,
                                     label="Width",
                                 )
                                 dano_text2video_num_frames = gr.Slider(
                                     minimum=1,
                                     maximum=50,
                                     value=10,
+                                    step=1,
                                     label="Number of Frames",
                                 )
                     dano_text2video_generate = gr.Button(value="Generator")
