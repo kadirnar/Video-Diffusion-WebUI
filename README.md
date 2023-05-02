@@ -25,4 +25,4 @@ python app.py
 <img width="500" alt="teaser" src="https://github.com/kadirnar/Video-Diffusion-WebUI/releases/download/v0.0.1/testv1.gif">
 
 ### [Stable Dİffusion Zoom Out and In](https://github.com/v8hid/infinite-zoom-stable-diffusion):
-<img width="500" alt="teaser" src="https://github.com/kadirnar/Video-Diffusion-WebUI/releases/download/v0.0.1/testv.gif">
+<img width="500" alt="teaser" src="https://github.com/kadirnar/Video-Diffusion-WebUI/releases/download/v0.0.1/testv2.gif">
