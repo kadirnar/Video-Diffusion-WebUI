@@ -18,6 +18,10 @@ pip install video-diffusion
 python app.py
 ```
 
-### Text2Video[Stable Diffusion Videos](https://github.com/nateraw/stable-diffusion-videos):
+### [Stable Diffusion Videos](https://github.com/nateraw/stable-diffusion-videos):
 
 <img width="600" alt="teaser" src="https://github.com/kadirnar/Video-Diffusion-WebUI/releases/download/v0.0.1/testv0.gif">
+
+### [Tune A Video](https://github.com/showlab/Tune-A-Video):
+
+<img width="600" alt="teaser" src="https://github.com/kadirnar/Video-Diffusion-WebUI/releases/download/v0.0.1/testv1.gif">
