@@ -1,8 +1,7 @@
 import gradio as gr
 import numpy as np
 import torch
-from stable_diffusion_videos import StableDiffusionWalkPipeline
-
+from video_diffusion.stable_diffusion_video.stable_diffusion_pipeline import StableDiffusionWalkPipeline   
 from video_diffusion.utils.model_list import stable_model_list
 
 

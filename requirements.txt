@@ -1,6 +1,4 @@
-diffusers
-gradio==3.19.0
-stable_diffusion_videos==0.8.1
 torch==2.0.0
-yt-dlp
-animesr
+git+https://github.com/huggingface/diffusers 
+transformers 
+accelerate
