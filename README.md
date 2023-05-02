@@ -19,9 +19,10 @@ python app.py
 ```
 
 ### [Stable Diffusion Videos](https://github.com/nateraw/stable-diffusion-videos):
-
-<img width="600" alt="teaser" src="https://github.com/kadirnar/Video-Diffusion-WebUI/releases/download/v0.0.1/testv0.gif">
+<img width="500" alt="teaser" src="https://github.com/kadirnar/Video-Diffusion-WebUI/releases/download/v0.0.1/testv0.gif">
 
 ### [Tune A Video](https://github.com/showlab/Tune-A-Video):
+<img width="500" alt="teaser" src="https://github.com/kadirnar/Video-Diffusion-WebUI/releases/download/v0.0.1/testv1.gif">
 
-<img width="600" alt="teaser" src="https://github.com/kadirnar/Video-Diffusion-WebUI/releases/download/v0.0.1/testv1.gif">
+### [Stable Dİffusion Zoom Out and In](https://github.com/v8hid/infinite-zoom-stable-diffusion):
+<img width="500" alt="teaser" src="https://github.com/kadirnar/Video-Diffusion-WebUI/releases/download/v0.0.1/testv.gif">
