@@ -1,20 +1,22 @@
+import gradio as gr
 import torch
 from diffusers import DiffusionPipeline, DPMSolverMultistepScheduler
 from diffusers.utils import export_to_video
-import gradio as gr
 
 
 class DamoText2VideoGenerator:
     def __init__(self):
         self.pipe = None
-        
+
     def load_model(self):
         if self.pipe is None:
-            self.pipe = DiffusionPipeline.from_pretrained("damo-vilab/text-to-video-ms-1.7b", torch_dtype=torch.float16, variant="fp16")
+            self.pipe = DiffusionPipeline.from_pretrained(
+                "damo-vilab/text-to-video-ms-1.7b", torch_dtype=torch.float16, variant="fp16"
+            )
             self.pipe.scheduler = DPMSolverMultistepScheduler.from_config(self.pipe.scheduler.config)
             self.pipe.enable_model_cpu_offload()
         return self.pipe
-    
+
     def generate_video(
         self,
         prompt: str,
@@ -38,7 +40,7 @@ class DamoText2VideoGenerator:
 
         video_path = export_to_video(video)
         return video_path
-    
+
     def app():
         with gr.Blocks():
             with gr.Row():
@@ -51,7 +53,6 @@ class DamoText2VideoGenerator:
                             dano_text2video_guidance_scale = gr.Number(value=7.5, label="Guidance Scale")
                         with gr.Row():
                             with gr.Column():
-
                                 dano_text2video_height = gr.Slider(
                                     minimum=1,
                                     maximum=1280,
@@ -73,7 +74,7 @@ class DamoText2VideoGenerator:
                     dano_text2video_generate = gr.Button(value="Generator")
                 with gr.Column():
                     dano_output = gr.Video(label="Output")
-            
+
         dano_text2video_generate.click(
             fn=DamoText2VideoGenerator().generate_video,
             inputs=[

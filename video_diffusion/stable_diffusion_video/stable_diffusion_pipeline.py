@@ -1,9 +1,9 @@
 import inspect
-import math
 import json
+import math
 import time
 from pathlib import Path
-from typing import Callable, List, Optional, Union, Tuple
+from typing import Callable, List, Optional, Tuple, Union
 
 import numpy as np
 import torch
@@ -11,9 +11,7 @@ from diffusers.configuration_utils import FrozenDict
 from diffusers.models import AutoencoderKL, UNet2DConditionModel
 from diffusers.pipeline_utils import DiffusionPipeline
 from diffusers.pipelines.stable_diffusion import StableDiffusionPipelineOutput
-from diffusers.pipelines.stable_diffusion.safety_checker import (
-    StableDiffusionSafetyChecker,
-)
+from diffusers.pipelines.stable_diffusion.safety_checker import StableDiffusionSafetyChecker
 from diffusers.schedulers import (
     DDIMScheduler,
     DPMSolverMultistepScheduler,
@@ -29,7 +27,6 @@ from transformers import CLIPFeatureExtractor, CLIPTextModel, CLIPTokenizer
 
 from .upsampling import RealESRGANModel
 from .utils import get_timesteps_arr, make_video_pyav, slerp
-
 
 logging.set_verbosity_info()
 logger = logging.get_logger(__name__)
@@ -524,9 +521,9 @@ class StableDiffusionWalkPipeline(DiffusionPipeline):
             T[skip:],
             batch_size,
         )
-        num_batches = math.ceil(num_interpolation_steps/batch_size)
+        num_batches = math.ceil(num_interpolation_steps / batch_size)
 
-        log_prefix = '' if step is None else f'[{step[0]}/{step[1]}] '
+        log_prefix = "" if step is None else f"[{step[0]}/{step[1]}] "
 
         frame_index = skip
         for batch_idx, embeds_batch, noise_batch in batch_generator:
@@ -534,7 +531,7 @@ class StableDiffusionWalkPipeline(DiffusionPipeline):
                 msg = f"Generating frame {frame_index}"
             else:
                 msg = f"Generating frames {frame_index}-{frame_index+embeds_batch.shape[0]-1}"
-            logger.info(f'{log_prefix}[{batch_idx}/{num_batches}] {msg}')
+            logger.info(f"{log_prefix}[{batch_idx}/{num_batches}] {msg}")
             outputs = self(
                 latents=noise_batch,
                 text_embeddings=embeds_batch,

@@ -6,9 +6,9 @@ from typing import Optional
 import torch
 import torch.nn.functional as F
 from diffusers.configuration_utils import ConfigMixin, register_to_config
-from diffusers.models.modeling_utils import ModelMixin
 from diffusers.models.attention import AdaLayerNorm, FeedForward
 from diffusers.models.cross_attention import CrossAttention
+from diffusers.models.modeling_utils import ModelMixin
 from diffusers.utils import BaseOutput
 from diffusers.utils.import_utils import is_xformers_available
 from einops import rearrange, repeat

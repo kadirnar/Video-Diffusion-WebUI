@@ -9,8 +9,8 @@ import torch
 import torch.nn as nn
 import torch.utils.checkpoint
 from diffusers.configuration_utils import ConfigMixin, register_to_config
-from diffusers.models.modeling_utils import ModelMixin
 from diffusers.models.embeddings import TimestepEmbedding, Timesteps
+from diffusers.models.modeling_utils import ModelMixin
 from diffusers.utils import BaseOutput, logging
 
 from .resnet import InflatedConv3d

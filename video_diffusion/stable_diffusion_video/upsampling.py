@@ -1,14 +1,14 @@
 from pathlib import Path
 
 import cv2
-from PIL import Image
-from huggingface_hub import hf_hub_download
-from torch import nn
 from diffusers.utils import logging
+from huggingface_hub import hf_hub_download
+from PIL import Image
+from torch import nn
 
 try:
-    from realesrgan import RealESRGANer
     from basicsr.archs.rrdbnet_arch import RRDBNet
+    from realesrgan import RealESRGANer
 except ImportError as e:
     raise ImportError(
         "You tried to import realesrgan without having it installed properly. To install Real-ESRGAN, run:\n\n"
@@ -92,11 +92,13 @@ class RealESRGANModel(nn.Module):
         image_paths = [x for x in generator if x.suffix.lower() in [".png", ".jpg", ".jpeg"]]
         n_img = len(image_paths)
         for i, image in enumerate(image_paths):
-            out_filepath = out_dir / (str(image.relative_to(in_dir).with_suffix('')) + suffix + outfile_ext)
+            out_filepath = out_dir / (str(image.relative_to(in_dir).with_suffix("")) + suffix + outfile_ext)
             if not force and out_filepath.exists():
-                logger.info(f'[{i}/{n_img}] {out_filepath} already exists, skipping. To avoid skipping, pass force=True.')
+                logger.info(
+                    f"[{i}/{n_img}] {out_filepath} already exists, skipping. To avoid skipping, pass force=True."
+                )
                 continue
-            logger.info(f'[{i}/{n_img}] upscaling {image}')
+            logger.info(f"[{i}/{n_img}] upscaling {image}")
             im = self(str(image))
             out_filepath.parent.mkdir(parents=True, exist_ok=True)
             im.save(out_filepath)
