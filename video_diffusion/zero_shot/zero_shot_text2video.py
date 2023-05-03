@@ -1,6 +1,6 @@
 import gradio as gr
-import imageio
 import torch
+import imageio
 
 from video_diffusion.tuneavideo.util import save_videos_grid
 from video_diffusion.utils.model_list import stable_model_list
@@ -35,7 +35,6 @@ class ZeroShotText2VideoGenerator:
         motion_field_strength_x,
         motion_field_strength_y,
     ):
-        breakpoint()
         pipe = self.load_model(model_id)
         result = pipe(
             prompt=prompt,
@@ -52,8 +51,8 @@ class ZeroShotText2VideoGenerator:
         ).images
         
         result = [(r * 255).astype("uint8") for r in result]
-        save_videos_grid(videos=result, path="output.gif", fps=fps)
-        return "output.gif"
+        imageio.mimsave("video.mp4", result, fps=fps)
+        return "video.mp4"
 
     def app():
         with gr.Blocks():
@@ -102,14 +101,14 @@ class ZeroShotText2VideoGenerator:
                                 minimum=0,
                                 maximum=100,
                                 step=1,
-                                value=0,
+                                value=44,
                             )
                             zero_shot_text2video_motion_field_strength_x = gr.Slider(
                                 label="Motion Field Strength X",
                                 minimum=0,
                                 maximum=100,
                                 step=1,
-                                value=12,
+                                value=50,
                             )
                         with gr.Row():
                             with gr.Column():
@@ -139,14 +138,14 @@ class ZeroShotText2VideoGenerator:
                                     minimum=0,
                                     maximum=100,
                                     step=1,
-                                    value=10,
+                                    value=54,
                                 )
                                 zero_shot_text2video_motion_field_strength_y = gr.Slider(
                                     label="Motion Field Strength Y",
                                     minimum=0,
                                     maximum=100,
                                     step=1,
-                                    value=12,
+                                    value=50,
                                 )
                     zero_shot_text2video_button = gr.Button(value="Generator")
 
