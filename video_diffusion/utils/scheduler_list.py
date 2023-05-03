@@ -4,6 +4,7 @@ from diffusers import (
     EulerDiscreteScheduler,
     HeunDiscreteScheduler,
     LMSDiscreteScheduler,
+    DPMSolverMultistepScheduler,
 )
 
 diff_scheduler_list = [
@@ -13,6 +14,7 @@ diff_scheduler_list = [
     "LMS",
     "Heun",
     "UniPC",
+    "DPMSolver"
 ]
 
 
@@ -31,5 +33,8 @@ def get_scheduler_list(pipe, scheduler):
 
     elif scheduler == diff_scheduler_list[4]:
         pipe.scheduler = HeunDiscreteScheduler.from_config(pipe.scheduler.config)
+
+    elif scheduler == diff_scheduler_list[5]:
+        pipe.scheduler = DPMSolverMultistepScheduler.from_config(pipe.scheduler.config)
 
     return pipe
