@@ -2,7 +2,9 @@ import gradio as gr
 import torch
 from diffusers import DiffusionPipeline, DPMSolverMultistepScheduler
 from diffusers.utils import export_to_video
+
 from video_diffusion.utils.scheduler_list import diff_scheduler_list, get_scheduler_list
+
 
 class DamoText2VideoGenerator:
     def __init__(self):
@@ -29,7 +31,6 @@ class DamoText2VideoGenerator:
         width: int,
         scheduler: str,
     ):
-        
         pipe = self.load_model(scheduler=scheduler)
         video = pipe(
             prompt,
@@ -49,7 +50,9 @@ class DamoText2VideoGenerator:
             with gr.Row():
                 with gr.Column():
                     dano_text2video_prompt = gr.Textbox(lines=1, placeholder="Prompt", show_label=False)
-                    dano_text2video_negative_prompt = gr.Textbox(lines=1, placeholder="Negative Prompt", show_label=False)
+                    dano_text2video_negative_prompt = gr.Textbox(
+                        lines=1, placeholder="Negative Prompt", show_label=False
+                    )
                     with gr.Row():
                         with gr.Column():
                             dano_text2video_num_inference_steps = gr.Slider(
@@ -92,7 +95,7 @@ class DamoText2VideoGenerator:
                                 damo_text2video_scheduler = gr.Dropdown(
                                     choices=diff_scheduler_list,
                                     label="Scheduler",
-                                    value=diff_scheduler_list[0],
+                                    value=diff_scheduler_list[6],
                                 )
                     dano_text2video_generate = gr.Button(value="Generator")
                 with gr.Column():

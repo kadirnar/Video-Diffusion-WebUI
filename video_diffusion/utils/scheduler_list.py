@@ -1,21 +1,13 @@
 from diffusers import (
     DDIMScheduler,
+    DPMSolverMultistepScheduler,
     EulerAncestralDiscreteScheduler,
     EulerDiscreteScheduler,
     HeunDiscreteScheduler,
     LMSDiscreteScheduler,
-    DPMSolverMultistepScheduler,
 )
 
-diff_scheduler_list = [
-    "DDIM",
-    "EulerA",
-    "Euler",
-    "LMS",
-    "Heun",
-    "UniPC",
-    "DPMSolver"
-]
+diff_scheduler_list = ["DDIM", "EulerA", "Euler", "LMS", "Heun", "UniPC", "DPMSolver"]
 
 
 def get_scheduler_list(pipe, scheduler):
