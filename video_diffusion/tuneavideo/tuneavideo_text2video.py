@@ -27,10 +27,11 @@ class TunaVideoText2VideoGenerator:
 
             self.pipe = TuneAVideoPipeline.from_pretrained(
                 stable_model_list, unet=self.unet, torch_dtype=torch.float16
-            ).to("cuda")
+            )
+            self.pipe.to("cuda")
             self.pipe.enable_xformers_memory_efficient_attention()
-            self.pipe.enable_vae_slicing()
-
+            self.pipe.enable_attention_slicing()
+            
         return self.pipe
 
     def generate_video(
@@ -88,7 +89,6 @@ class TunaVideoText2VideoGenerator:
                                 value=10,
                                 label="Video Length",
                             )
-
                             tunevideo_num_inference_steps = gr.Slider(
                                 minimum=1,
                                 maximum=100,

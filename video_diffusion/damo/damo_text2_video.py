@@ -16,8 +16,9 @@ class DamoText2VideoGenerator:
                 "damo-vilab/text-to-video-ms-1.7b", torch_dtype=torch.float16, variant="fp16"
             )
             self.pipe = get_scheduler_list(pipe=self.pipe, scheduler=scheduler)
-            self.pipe.enable_model_cpu_offload()
-            self.pipe.enable_vae_slicing()
+            self.pipe.to("cuda")
+            self.pipe.enable_xformers_memory_efficient_attention()
+            self.pipe.enable_attention_slicing()
         return self.pipe
 
     def generate_video(

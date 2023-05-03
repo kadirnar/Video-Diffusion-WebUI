@@ -21,9 +21,10 @@ class StableDiffusionText2VideoGenerator:
                 revision="fp16",
             )
 
-        self.pipe.to(torch_device="cuda")
-        self.pipe.enable_xformers_memory_efficient_attention()
-
+            self.pipe.to("cuda")
+            self.pipe.enable_xformers_memory_efficient_attention()
+            self.pipe.enable_attention_slicing()
+            
         return self.pipe
 
     def generate_video(

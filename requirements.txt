@@ -7,4 +7,5 @@ realesrgan==0.2.5.0
 librosa
 xformers
 einops
-imageio==2.25.1
+imageio==2.9.0
+imageio-ffmpeg==0.4.2
