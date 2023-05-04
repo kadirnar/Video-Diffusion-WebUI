@@ -21,25 +21,25 @@ python app.py
 <table>
   <tr>
     <td>
-      <img width="250" alt="teaser" src="https://github.com/kadirnar/Video-Diffusion-WebUI/releases/download/v0.0.1/testv0.gif"><br>
+      <img width="230" alt="teaser" src="https://github.com/kadirnar/Video-Diffusion-WebUI/releases/download/v0.0.1/testv0.gif"><br>
       <a href="https://github.com/nateraw/stable-diffusion-videos">Stable Diffusion Videos</a>
     </td>
     <td>
-      <img width="250" alt="teaser" src="https://github.com/kadirnar/Video-Diffusion-WebUI/releases/download/v0.0.1/testv1.gif"><br>
+      <img width="230" alt="teaser" src="https://github.com/kadirnar/Video-Diffusion-WebUI/releases/download/v0.0.1/testv1.gif"><br>
       <a href="https://github.com/showlab/Tune-A-Video">Tune A Video</a>
     </td>
     <td>
-      <img width="250" alt="teaser" src="https://github.com/kadirnar/Video-Diffusion-WebUI/releases/download/v0.0.1/testv2.gif"><br>
+      <img width="230" alt="teaser" src="https://github.com/kadirnar/Video-Diffusion-WebUI/releases/download/v0.0.1/testv2.gif"><br>
       <a href="https://github.com/v8hid/infinite-zoom-stable-diffusion">Stable Diffusion Zoom Out and In</a>
     </td>
   </tr>
   <tr>
     <td>
-      <img width="250" alt="teaser" src="https://github.com/kadirnar/Video-Diffusion-WebUI/releases/download/v0.0.1/testv4.gif"><br>
+      <img width="230" alt="teaser" src="https://github.com/kadirnar/Video-Diffusion-WebUI/releases/download/v0.0.1/testv4.gif"><br>
       <a href="https://github.com/Picsart-AI-Research/Text2Video-Zero">Zero Text2Video</a>
     </td>
     <td>
-      <img width="250" alt="teaser" src="https://github.com/kadirnar/Video-Diffusion-WebUI/releases/download/v0.0.1/testv3.gif"><br>
+      <img width="230" alt="teaser" src="https://github.com/kadirnar/Video-Diffusion-WebUI/releases/download/v0.0.1/testv3.gif"><br>
       <a href="https://github.com/Picsart-AI-Research/Text2Video-Zero">Zero Text2Video</a>
     </td>
     <td>
