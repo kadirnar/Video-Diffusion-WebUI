@@ -25,13 +25,11 @@ class TunaVideoText2VideoGenerator:
                     video_diffusion_model_list, subfolder="unet", torch_dtype=torch.float16
                 ).to("cuda")
 
-            self.pipe = TuneAVideoPipeline.from_pretrained(
-                stable_model_list, unet=self.unet, torch_dtype=torch.float16
-            )
+            self.pipe = TuneAVideoPipeline.from_pretrained(stable_model_list, unet=self.unet, torch_dtype=torch.float16)
             self.pipe.to("cuda")
             self.pipe.enable_xformers_memory_efficient_attention()
             self.pipe.enable_attention_slicing()
-            
+
         return self.pipe
 
     def generate_video(
