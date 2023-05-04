@@ -21,19 +21,17 @@ class ZeroShotText2VideoGenerator:
 
     def generate_video(
         self,
-        prompt,
-        negative_prompt,
-        model_id,
-        height,
-        width,
-        video_length,
-        num_inference_steps,
-        guidance_scale,
-        fps,
-        t0,
-        t1,
-        motion_field_strength_x,
-        motion_field_strength_y,
+        prompt: str,
+        negative_prompt: str,
+        model_id: str,
+        height: int,
+        width: int,
+        video_length: int,
+        num_inference_steps: int,
+        guidance_scale: float,
+        fps: int,
+        t0: int,
+        t1: int,
     ):
         pipe = self.load_model(model_id)
         result = pipe(
@@ -46,12 +44,10 @@ class ZeroShotText2VideoGenerator:
             guidance_scale=guidance_scale,
             t0=t0,
             t1=t1,
-            motion_field_strength_x=motion_field_strength_x,
-            motion_field_strength_y=motion_field_strength_y,
         ).images
-        
         result = [(r * 255).astype("uint8") for r in result]
         imageio.mimsave("video.mp4", result, fps=fps)
+        
         return "video.mp4"
 
     def app():
@@ -103,13 +99,6 @@ class ZeroShotText2VideoGenerator:
                                 step=1,
                                 value=44,
                             )
-                            zero_shot_text2video_motion_field_strength_x = gr.Slider(
-                                label="Motion Field Strength X",
-                                minimum=0,
-                                maximum=100,
-                                step=1,
-                                value=50,
-                            )
                         with gr.Row():
                             with gr.Column():
                                 zero_shot_text2video_height = gr.Slider(
@@ -140,13 +129,6 @@ class ZeroShotText2VideoGenerator:
                                     step=1,
                                     value=54,
                                 )
-                                zero_shot_text2video_motion_field_strength_y = gr.Slider(
-                                    label="Motion Field Strength Y",
-                                    minimum=0,
-                                    maximum=100,
-                                    step=1,
-                                    value=50,
-                                )
                     zero_shot_text2video_button = gr.Button(value="Generator")
 
                 with gr.Column():
@@ -166,8 +148,6 @@ class ZeroShotText2VideoGenerator:
                     zero_shot_text2video_fps,
                     zero_shot_text2video_t0,
                     zero_shot_text2video_t1,
-                    zero_shot_text2video_motion_field_strength_x,
-                    zero_shot_text2video_motion_field_strength_y,
                 ],
                 outputs=zero_shot_text2video_output,
             )
