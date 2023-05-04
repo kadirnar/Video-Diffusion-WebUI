@@ -27,5 +27,8 @@ python app.py
 ### [Stable Dİffusion Zoom Out and In](https://github.com/v8hid/infinite-zoom-stable-diffusion):
 <img width="500" alt="teaser" src="https://github.com/kadirnar/Video-Diffusion-WebUI/releases/download/v0.0.1/testv2.gif">
 
+### [Zero Text2Video](https://github.com/Picsart-AI-Research/Text2Video-Zero):
+<img width="500" alt="teaser" src="https://github.com/kadirnar/Video-Diffusion-WebUI/releases/download/v0.0.1/testv4.gif">
+
 ### [Damo Text2Video](https://huggingface.co/damo-vilab/text-to-video-ms-1.7b):
 <img width="500" alt="teaser" src="https://github.com/kadirnar/Video-Diffusion-WebUI/releases/download/v0.0.1/testv3.gif">
