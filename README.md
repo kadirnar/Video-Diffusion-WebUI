@@ -21,7 +21,7 @@ python app.py
 <table>
   <tr>
     <td>
-      <img width="230" alt="teaser" src="https://github.com/kadirnar/Video-Diffusion-WebUI/releases/download/v0.0.1/testv0.gif"><br>
+      <img width="230" height="230" alt="teaser" src="https://github.com/kadirnar/Video-Diffusion-WebUI/releases/download/v0.0.1/testv0.gif"><br>
       <a href="https://github.com/nateraw/stable-diffusion-videos">Stable Diffusion Videos</a>
     </td>
     <td>
@@ -40,7 +40,7 @@ python app.py
     </td>
     <td>
       <img width="230" alt="teaser" src="https://github.com/kadirnar/Video-Diffusion-WebUI/releases/download/v0.0.1/testv3.gif"><br>
-      <a href="https://github.com/Picsart-AI-Research/Text2Video-Zero">Zero Text2Video</a>
+      <a href="https://huggingface.co/damo-vilab/text-to-video-ms-1.7b">Damo Text2Video</a>
     </td>
     <td>
     </td>
