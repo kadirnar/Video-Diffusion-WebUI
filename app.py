@@ -1,5 +1,4 @@
 import gradio as gr
-
 from video_diffusion.damo.damo_text2_video import DamoText2VideoGenerator
 from video_diffusion.inpaint_zoom.zoom_in_app import StableDiffusionZoomIn
 from video_diffusion.inpaint_zoom.zoom_out_app import StableDiffusionZoomOut

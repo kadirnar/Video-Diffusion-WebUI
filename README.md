@@ -9,11 +9,15 @@
 </div>
 
 This repo is a Text2Video + Image2Video + Video2Video WebUI Implementation.
+
 ### Installation
+
 ```bash
 pip install video-diffusion
 ```
+
 ### Usage
+
 ```python
 python app.py
 ```
