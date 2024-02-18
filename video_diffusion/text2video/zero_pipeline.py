@@ -17,7 +17,7 @@ stable_model_list = [
 
 
 class ZeroShotText2VideoGenerator:
-    def __init__(self, model_id=""):
+    def __init__(self, model_id="runwayml/stable-diffusion-v1-5"):
         self.pipe = None
         self.device = None
 
@@ -40,10 +40,10 @@ class ZeroShotText2VideoGenerator:
     def load_model(self, model_id, model_type="sd15"):
         logging.info(f"Loading model: {model_id}")
         if model_type == "sd15":
-            pipe = TextToVideoZeroPipeline.from_pretrained(model_id, torch_dtype=torch.float16).to(self.device)
+            pipe = TextToVideoZeroPipeline.from_pretrained(pretrained_model_name_or_path=model_id, torch_dtype=torch.float16).to(self.device)
         
         elif model_type == "sdxl":
-            pipe = TextToVideoZeroSDXLPipeline.from_pretrained(model_id, torch_dtype=torch.float16, variant="fp16", use_safetensors=True).to(self.device)
+            pipe = TextToVideoZeroSDXLPipeline.from_pretrained(pretrained_model_name_or_path=model_id, torch_dtype=torch.float16, variant="fp16", use_safetensors=True).to(self.device)
 
         # memory optimization
         pipe.unet.enable_forward_chunking(chunk_size=1, dim=1)

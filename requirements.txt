@@ -1,11 +1,4 @@
-torch==2.0.0
-git+https://github.com/huggingface/diffusers
-transformers
-accelerate
-opencv-python
-realesrgan==0.2.5.0
-librosa
-xformers
-einops
-imageio==2.9.0
-imageio-ffmpeg==0.4.2
+diffusers==0.26.3
+gradio==4.19.1
+imageio==2.34.0
+torch==2.1.2
