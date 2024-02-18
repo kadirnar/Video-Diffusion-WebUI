@@ -6,15 +6,17 @@ from typing import Optional
 import gradio as gr
 import imageio
 import torch
-from diffusers import TextToVideoZeroPipeline
+from diffusers import TextToVideoZeroPipeline, TextToVideoZeroSDXLPipeline
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-stable_model_list = []
+stable_model_list = [
+    "runwayml/stable-diffusion-v1-5",
+    "stabilityai/stable-diffusion-xl-base-1.0"
+]
 
 
 class ZeroShotText2VideoGenerator:
-
     def __init__(self, model_id=""):
         self.pipe = None
         self.device = None
@@ -35,9 +37,13 @@ class ZeroShotText2VideoGenerator:
 
         logging.info(f"Using device: {self.device}")
 
-    def load_model(self, model_id):
+    def load_model(self, model_id, model_type="sd15"):
         logging.info(f"Loading model: {model_id}")
-        pipe = TextToVideoZeroPipeline.from_pretrained(model_id, torch_dtype=torch.float16).to(self.device)
+        if model_type == "sd15":
+            pipe = TextToVideoZeroPipeline.from_pretrained(model_id, torch_dtype=torch.float16).to(self.device)
+        
+        elif model_type == "sdxl":
+            pipe = TextToVideoZeroSDXLPipeline.from_pretrained(model_id, torch_dtype=torch.float16, variant="fp16", use_safetensors=True).to(self.device)
 
         # memory optimization
         pipe.unet.enable_forward_chunking(chunk_size=1, dim=1)
@@ -61,9 +67,10 @@ class ZeroShotText2VideoGenerator:
         t1,
         motion_field_strength_x,
         motion_field_strength_y,
+        model_type="sd15",
         save_path: Optional[str] = "output.mp4",
     ):
-        pipe = self.load_model(model_id)
+        pipe = self.load_model(model_id, model_type=model_type)
         result = pipe(
             prompt=prompt,
             negative_prompt=negative_prompt,
@@ -100,6 +107,12 @@ class ZeroShotText2VideoGenerator:
                         label="Stable Model List",
                         value=stable_model_list[0],
                     )
+                    zero_shot_text2video_model_type = gr.Dropdown(
+                        choices=["sd15", "sdxl"],
+                        label="Model Type",
+                        value="sd15",
+                    )
+
                     with gr.Row():
                         with gr.Column():
                             zero_shot_text2video_guidance_scale = gr.Slider(
@@ -187,6 +200,7 @@ class ZeroShotText2VideoGenerator:
                     zero_shot_text2video_t1,
                     zero_shot_text2video_motion_field_strength_x,
                     zero_shot_text2video_motion_field_strength_y,
+                    zero_shot_text2video_model_type,
                 ],
                 outputs=zero_shot_text2video_output,
             )
